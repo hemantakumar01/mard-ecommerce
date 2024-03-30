@@ -1,10 +1,11 @@
 import User from "../model/userSchema.js";
-import { tryAsync } from "../utils/TryAsync.js";
+
 import { uplodeToCloudinary } from "../utils/cloudinar.js";
 import { CError } from "../utils/custumError.js";
 import bcrypt from "bcrypt";
 import { responce } from "../utils/responce.js";
 import jwt from "jsonwebtoken";
+import { tryAsync } from "../utils/TryAsync.js";
 export const createNewUser = tryAsync(async (req, res, next) => {
   // const filepath = await uplodeToCloudinary(req.file.path);
 
