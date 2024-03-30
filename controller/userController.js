@@ -99,4 +99,3 @@ export const getSingleUserWithToken = tryAsync(async (req, res, next) => {
     user,
   });
 });
-export const sample = tryAsync(async (req, res, next) => {});
