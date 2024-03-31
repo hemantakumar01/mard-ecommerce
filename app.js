@@ -7,6 +7,12 @@ import orderRoutes from "./routes/orderRoutes.js";
 import { dbConnection } from "./utils/dbConnection.js";
 import Razorpay from "razorpay";
 import cors from "cors";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const __joinPath = join(__dirname + "/client/build");
 
 const app = express();
 
@@ -17,11 +23,14 @@ export const razorpay = new Razorpay({
 });
 app.use(express.json({ limit: "5mb" }));
 app.use(cors({}));
-app.get("/", (req, res, next) => {
-  res.status(200).send({
-    success: true,
-    message: "Hellow world",
-  });
+app.use(express.static("client"));
+app.use(express.static(__joinPath));
+app.get("*", (req, res) => {
+  try {
+    res.sendFile(express.static(__joinPath));
+  } catch (error) {
+    console.log(error);
+  }
 });
 // All Routes
 app.use("/api/user", userRoute);
