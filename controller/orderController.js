@@ -1,5 +1,5 @@
 import orderModel from "../model/orderModle.js";
-import { tryAsync } from "../utils/TryAsync.js";
+import { tryAsync } from "../utils/tryAsync.js";
 import { CError } from "../utils/custumError.js";
 import { reduceStock } from "../utils/utils.js";
 

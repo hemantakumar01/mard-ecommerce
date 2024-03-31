@@ -1,5 +1,5 @@
 import Product from "../model/productModle.js";
-import { tryAsync } from "../utils/TryAsync.js";
+import { tryAsync } from "../utils/tryAsync.js";
 import { uplodeToCloudinary } from "../utils/cloudinar.js";
 import { CError } from "../utils/custumError.js";
 import { responce } from "../utils/responce.js";

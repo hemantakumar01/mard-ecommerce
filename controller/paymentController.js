@@ -1,5 +1,5 @@
 import { razorpay } from "../app.js";
-import { tryAsync } from "../utils/TryAsync.js";
+import { tryAsync } from "../utils/tryAsync.js";
 
 export const checkout = async (req, res) => {
   try {
@@ -19,8 +19,6 @@ export const checkout = async (req, res) => {
 };
 
 export const verify = tryAsync(async (req, res) => {
-  console.log(req.body);
-
   res.status(200).send({ success: "true" });
 });
 
