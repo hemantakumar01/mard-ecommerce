@@ -5,7 +5,7 @@ import { CError } from "../utils/custumError.js";
 import bcrypt from "bcrypt";
 import { responce } from "../utils/responce.js";
 import jwt from "jsonwebtoken";
-import { tryAsync as tryAsync } from "../utils/tryAsync.js";
+import { tryAsync } from "../utils/TryAsync.js";
 export const createNewUser = tryAsync(async (req, res, next) => {
   // const filepath = await uplodeToCloudinary(req.file.path);
 
