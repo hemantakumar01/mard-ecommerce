@@ -13,6 +13,7 @@ import { dirname, join } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const __joinPath = join(__dirname + "/client/build");
+const filePath = join(__dirname + "/client/build/index.html");
 
 const app = express();
 
@@ -22,21 +23,33 @@ export const razorpay = new Razorpay({
   key_secret: process.env.RPKEY_SECRET,
 });
 app.use(express.json({ limit: "5mb" }));
-app.use(cors({}));
-app.use(express.static("client"));
+app.use(
+  cors({
+    credentials: true,
+    origin: [
+      "http://192.168.169.107:3000",
+      process.env.CORS_URL,
+      "http://localhost:3000",
+      "https://hemantapaswan.site",
+      "https://mard-ecommerce.onrender.com",
+    ],
+  })
+);
+
 app.use(express.static(__joinPath));
-app.get("*", (req, res) => {
-  try {
-    res.sendFile(express.static(__joinPath));
-  } catch (error) {
-    console.log(error);
-  }
-});
+
 // All Routes
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/order", orderRoutes);
+app.get("*", (req, res) => {
+  try {
+    res.sendFile(filePath);
+  } catch (error) {
+    console.log(error);
+  }
+});
 dbConnection();
 
 // error middleware
